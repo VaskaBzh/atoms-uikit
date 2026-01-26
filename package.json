@@ -1,0 +1,52 @@
+{
+  "name": "atoms-uikit",
+  "type": "module",
+  "main": "./dist/atoms-uikit.umd.js",
+  "module": "./dist/atoms-uikit.es.js",
+  "types": "./dist/index.d.ts",
+  "typings": "./dist/index.d.ts",
+  "styles": "./dist/style.css",
+  "private": true,
+  "exports": {
+    ".": {
+      "import": "./dist/atoms-uikit.es.js",
+      "require": "./dist/atoms-uikit.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./clarity.css": "./dist/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "@testing-library/vue": "^8.1.0",
+    "@vue/test-utils": "^2.4.6",
+    "element-plus": "^2.7.6",
+    "lodash": "^4.17.21",
+    "path": "^0.12.7",
+    "vite-plugin-css-injected-by-js": "^3.5.1",
+    "vite-plugin-dts": "^3.9.1",
+    "vue": "^3.4.29",
+    "vue-range-multi": "^0.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "jsdom": "^25.0.1",
+    "sass": "^1.77.8",
+    "typescript": "^5.2.2",
+    "unplugin-auto-import": "^0.17.6",
+    "unplugin-vue-components": "^0.27.2",
+    "vite": "^5.3.1",
+    "vitest": "^2.1.4",
+    "vue-tsc": "^2.0.21"
+  }
+}

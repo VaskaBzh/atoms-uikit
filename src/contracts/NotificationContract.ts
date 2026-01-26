@@ -1,0 +1,17 @@
+export interface NotificationParamsContract {
+	title: string,
+	message: string,
+	duration?: number,
+	customClass?: string,
+	dangerouslyUseHTMLString?: boolean,
+	icon?: string,
+	id?: string,
+	offset?: number,
+	onClick?: () => void,
+	onClose?: () => void,
+	position?: "top-right" | "top-left" | "bottom-right" | "bottom-left",
+	showClose?: boolean,
+	type?: "" | "success" | "warning" | "error" | "info",
+	zIndex?: number,
+	appendTo?: string | HTMLElement,
+}

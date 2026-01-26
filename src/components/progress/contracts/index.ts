@@ -1,0 +1,1 @@
+export type { ProgressPropsContract } from "./ProgressPropsContract";

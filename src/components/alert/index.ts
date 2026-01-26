@@ -1,0 +1,1 @@
+export { default as MainAlert } from "./MainAlert.vue";

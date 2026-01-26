@@ -1,0 +1,1 @@
+export type { TitlePropsContract } from "./TitlePropsContract";

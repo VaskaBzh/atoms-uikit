@@ -1,0 +1,1 @@
+export { default as MainTooltip } from "./MainTooltip.vue";

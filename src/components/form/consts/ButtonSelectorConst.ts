@@ -1,0 +1,1 @@
+export const ButtonSelectorConst = "[data-submit]" as const

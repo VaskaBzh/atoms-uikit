@@ -1,0 +1,1 @@
+export { default as MainEmpty } from "./MainEmpty.vue";

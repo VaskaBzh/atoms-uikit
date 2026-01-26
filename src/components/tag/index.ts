@@ -1,0 +1,1 @@
+export { default as MainTag } from "./MainTag.vue";

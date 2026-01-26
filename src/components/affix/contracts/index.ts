@@ -1,0 +1,1 @@
+export type { AffixPropsContract } from "./AffixPropsContract.ts";

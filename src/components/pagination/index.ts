@@ -1,0 +1,1 @@
+export { default as MainPagination } from "./MainPagination.vue";

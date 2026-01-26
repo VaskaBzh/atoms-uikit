@@ -1,0 +1,1 @@
+export type { PopoverPropsContract } from "./PopoverPropsContract";

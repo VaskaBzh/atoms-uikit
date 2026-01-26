@@ -1,0 +1,1 @@
+export type { ModalPropsContract } from "./ModalPropsContract";

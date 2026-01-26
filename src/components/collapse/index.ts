@@ -1,0 +1,1 @@
+export { default as MainCollapse } from "./MainCollapse.vue";

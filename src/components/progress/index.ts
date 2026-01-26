@@ -1,0 +1,1 @@
+export { default as MainProgress } from "./MainProgress.vue";

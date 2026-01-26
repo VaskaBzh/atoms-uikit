@@ -1,0 +1,1 @@
+export { default as MainAffix } from "./MainAffix.vue";

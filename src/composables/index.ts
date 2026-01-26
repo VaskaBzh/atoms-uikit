@@ -1,0 +1,1 @@
+export { isDark, changeTheme } from "./theme";

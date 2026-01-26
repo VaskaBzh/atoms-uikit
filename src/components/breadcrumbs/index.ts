@@ -1,0 +1,1 @@
+export { default as MainBreadcrumbs } from "./MainBreadcrumbs.vue";

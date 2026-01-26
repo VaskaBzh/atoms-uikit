@@ -1,0 +1,1 @@
+export { COLLAPSE_LIST_MOCK } from "./CollapseMock";

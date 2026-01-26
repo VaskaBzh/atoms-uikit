@@ -1,0 +1,1 @@
+export type { TagPropsContract } from "./TagPropsContract.ts";

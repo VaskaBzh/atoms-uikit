@@ -1,0 +1,1 @@
+export type { IconPropsContract } from "./IconPropsContract";

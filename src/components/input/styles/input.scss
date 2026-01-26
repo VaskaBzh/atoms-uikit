@@ -1,0 +1,47 @@
+:global(.input .el-input__wrapper) {
+  // to drop box shadow in disabled state
+  box-shadow: none !important;
+  position: relative;
+  overflow: hidden;
+}
+:global(.input .el-input__wrapper:before) {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background: var(--el-input-border-color);
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+:global(.input.is-disabled .el-input__wrapper:before) {
+  background: var(--el-disabled-border-color);
+}
+:global(.input:not(.is-disabled) .el-input__wrapper:after) {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background: var(--el-input-focus-border-color);
+  transition: all 0.5s ease 0s;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+:global(.input.is-disabled .el-input__wrapper:after) {
+  content: none;
+}
+:global(.input .el-input__wrapper:hover:after),
+:global(.input .el-input__wrapper.is-focus:after) {
+  transform: translateX(0);
+}
+:global(.input .el-input__wrapper:hover:after),
+:global(.input .el-input__wrapper.is-focus:after) {
+  box-shadow: none;
+}
+:global(.input.el-input--suffix .el-input__wrapper) {
+  padding-right: 24px;
+}
+:global(.input.el-input-suffix--password-clear .el-input__wrapper) {
+  padding-right: 48px;
+}

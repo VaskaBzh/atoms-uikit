@@ -1,0 +1,1 @@
+export type { BreadcrumbsPropsContract } from "./BreadcrumbsPropsContract";

@@ -1,0 +1,1 @@
+export type ColorType = "primary" | "success" | "info" | "warning" | "danger";
