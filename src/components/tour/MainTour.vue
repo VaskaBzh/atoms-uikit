@@ -6,30 +6,34 @@
   >
     <template #default>
       <slot>
-        <el-tour-step
+        <main-tour-item
           v-for="(step, stepIndex) in steps"
           :key="stepIndex"
-          :target="step.target"
-          :title="step.title"
-          :description="step.description"
-          :mask="step.isMask"
+          v-bind="step"
+          :prev-button-props="step.prevButtonProps ?? prevButtonProps"
+          :prev-button-text="step.prevButtonText ?? prevButtonText"
+          :next-button-props="step.nextButtonProps ?? nextButtonProps"
+          :next-button-text="step.nextButtonText ?? nextButtonText"
+          :finish-button-props="step.finishButtonProps ?? finishButtonProps"
+          :finish-button-text="step.finishButtonText ?? finishButtonText"
+          :is-last="stepIndex === steps.length - 1"
         >
           <slot :name="`step${stepIndex}`" />
-        </el-tour-step>
+        </main-tour-item>
       </slot>
     </template>
-    <!-- Custom indicators -->
-    <template #indicators="{ current, total }" v-if="$slots.indicators">
+    <template v-if="$slots.indicators" #indicators="{ current, total }">
       <slot name="indicators" :current="current" :total="total" />
     </template>
   </el-tour>
 </template>
 
 <script setup lang="ts">
-import { TourPropsContract } from "./contracts";
 import { ModelRef } from "vue";
+import { TourPropsContract } from "./contracts";
+import MainTourItem from "./MainTourItem.vue";
 
-withDefaults(
+const props = withDefaults(
   defineProps<TourPropsContract>(),
   {
     isMask: true,
