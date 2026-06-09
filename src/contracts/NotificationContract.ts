@@ -1,5 +1,5 @@
 export interface NotificationParamsContract {
-	title: string,
+	title?: string,
 	message: string,
 	duration?: number,
 	customClass?: string,
