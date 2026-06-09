@@ -6,6 +6,7 @@
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
   "styles": "./dist/style.css",
+  "sideEffects": ["*.css", "*.scss"],
   "private": true,
   "exports": {
     ".": {
@@ -33,7 +34,6 @@
     "element-plus": "^2.7.6",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
-    "vite-plugin-css-injected-by-js": "^3.5.1",
     "vite-plugin-dts": "^3.9.1",
     "vue": "^3.4.29",
     "vue-range-multi": "^0.2.1"
