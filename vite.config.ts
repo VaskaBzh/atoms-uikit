@@ -11,7 +11,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		dts({
-			rollupTypes: true
+			tsconfigPath: "./tsconfig.app.json",
 		}),
 		AutoImport({
 			imports: ["vue"],

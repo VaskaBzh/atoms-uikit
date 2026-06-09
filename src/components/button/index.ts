@@ -1,3 +1,3 @@
 export { default as MainButton } from "./MainButton.vue";
-export { ButtonPropsContract } from "./contracts";
+export type { ButtonPropsContract } from "./contracts";
 export { mapToElButton } from "./utils";
