@@ -17,8 +17,8 @@
 		<main-icon
 			class="button_icon"
 			:class="{
-        'button_icon-left': icon && $slots.default
-      }"
+                'button_icon-left': icon && $slots.default
+            }"
 			v-if="!isIconRight && icon && !isLoading"
 			:icon="icon"
 			:size="size === 'small' ? 14 : undefined"
