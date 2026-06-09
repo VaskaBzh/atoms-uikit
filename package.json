@@ -1,19 +1,44 @@
 {
   "name": "atoms-uikit",
   "type": "module",
-  "main": "./dist/atoms-uikit.umd.js",
-  "module": "./dist/atoms-uikit.es.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
   "styles": "./dist/style.css",
   "sideEffects": ["*.css", "*.scss"],
   "private": true,
   "exports": {
-    ".": {
-      "import": "./dist/atoms-uikit.es.js",
-      "require": "./dist/atoms-uikit.umd.js",
-      "types": "./dist/index.d.ts"
-    },
+    ".": { "import": "./dist/index.js", "types": "./dist/index.d.ts" },
+    "./button": { "import": "./dist/button.js" },
+    "./affix": { "import": "./dist/affix.js" },
+    "./alert": { "import": "./dist/alert.js" },
+    "./breadcrumbs": { "import": "./dist/breadcrumbs.js" },
+    "./checkbox": { "import": "./dist/checkbox.js" },
+    "./collapse": { "import": "./dist/collapse.js" },
+    "./date-picker": { "import": "./dist/date-picker.js" },
+    "./divider": { "import": "./dist/divider.js" },
+    "./empty": { "import": "./dist/empty.js" },
+    "./form": { "import": "./dist/form.js" },
+    "./icon": { "import": "./dist/icon.js" },
+    "./input": { "import": "./dist/input.js" },
+    "./menu": { "import": "./dist/menu.js" },
+    "./modal": { "import": "./dist/modal.js" },
+    "./pagination": { "import": "./dist/pagination.js" },
+    "./popover": { "import": "./dist/popover.js" },
+    "./progress": { "import": "./dist/progress.js" },
+    "./radio": { "import": "./dist/radio.js" },
+    "./select": { "import": "./dist/select.js" },
+    "./skeleton": { "import": "./dist/skeleton.js" },
+    "./statistic": { "import": "./dist/statistic.js" },
+    "./step": { "import": "./dist/step.js" },
+    "./tab": { "import": "./dist/tab.js" },
+    "./table": { "import": "./dist/table.js" },
+    "./tag": { "import": "./dist/tag.js" },
+    "./title": { "import": "./dist/title.js" },
+    "./tooltip": { "import": "./dist/tooltip.js" },
+    "./tour": { "import": "./dist/tour.js" },
+    "./tree": { "import": "./dist/tree.js" },
     "./clarity.css": "./dist/style.css"
   },
   "files": [
@@ -27,15 +52,17 @@
     "test": "vitest",
     "prepare": "husky"
   },
+  "peerDependencies": {
+    "element-plus": ">=2.7.6",
+    "@element-plus/icons-vue": ">=2.3.1",
+    "vue": ">=3.4.0"
+  },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.3.1",
     "@testing-library/vue": "^8.1.0",
     "@vue/test-utils": "^2.4.6",
-    "element-plus": "^2.7.6",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
     "vite-plugin-dts": "^3.9.1",
-    "vue": "^3.4.29",
     "vue-range-multi": "^0.2.1"
   },
   "devDependencies": {
