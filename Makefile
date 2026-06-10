@@ -1,12 +1,8 @@
-#   build     - собрать uikit (локально)
-#   link      - зарегистрировать uikit в глобальной npm-линковке
-#   unlink    - удалить глобальную линковку (опционально)
-#   clean     - удалить артефакты сборки (не затрагивает линковку)
-#   rebuild   - полный цикл: сборка + линковка (без удаления)
-#   distclean - сборка + линковка + удаление временных файлов
-#   TODO: need to check
+#   build     - установить зависимости и собрать uikit
+#   clean     - удалить артефакты сборки
+#   rebuild   - clean + build
 
-.PHONY: build link unlink clean rebuild distclean
+.PHONY: build clean rebuild
 
 # Пути и настройки
 SRC_DIR = .
@@ -19,26 +15,10 @@ build:
 	npm run build
 	@echo "Сборка завершена: $(BUILD_DIR)/"
 
-link:
-	@echo "Регистрируем $(PACKAGE_NAME) в глобальной npm-линковке..."
-	npm link
-	@echo "Теперь можно использовать 'npm link $(PACKAGE_NAME)' в других проектах"
-
-unlink:
-	@echo "Удаляем глобальную линковку $(PACKAGE_NAME)..."
-	npm unlink $(PACKAGE_NAME) || echo "Линковка не найдена или уже удалена"
-	@echo "Глобальная линковка удалена"
-
 clean:
 	@echo "Очищаем артефакты сборки..."
 	rm -rf $(BUILD_DIR) node_modules package-lock.json
 	@echo "Очистка завершена"
 
-rebuild: build link
-	@echo "$(PACKAGE_NAME) собран и зарегистрирован для линковки"
-
-distclean: rebuild
-	@echo "Удаляем временные файлы (кроме глобальной линковки)..."
-	# Не удаляем глобальную линковку — она хранится в npm-глобальном каталоге
-	rm -rf node_modules package-lock.json
-	@echo "Временные файлы удалены. Линковка сохранена."
+rebuild: clean build
+	@echo "$(PACKAGE_NAME) пересобран"
