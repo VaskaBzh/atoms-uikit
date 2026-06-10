@@ -1,6 +1,6 @@
 # Atoms UI Kit
 
-UI Kit на базе **Vue 3 + TypeScript + Vite**, предназначенный для переиспользования в других проектах через `npm link`.
+UI Kit на базе **Vue 3 + TypeScript + Vite**, предназначенный для переиспользования в других проектах через локальную зависимость.
 
 Проект использует Vue 3 `<script setup>` SFC и собирается в виде готового npm-пакета.
 
@@ -81,51 +81,62 @@ npm run test        # Запуск тестов
 
 ## Makefile
 
-Автоматизация сборки и npm-линковки.
-
 | Команда | Описание |
 |---------|----------|
 | `make build` | Установка зависимостей + сборка в `dist/` |
-| `make link` | Регистрация пакета в глобальной npm-линковке |
-| `make unlink` | Удаление глобальной npm-линковки |
 | `make clean` | Очистка `dist/`, `node_modules/`, `package-lock.json` |
-| `make rebuild` | `build` + `link` |
-| `make distclean` | `rebuild` + очистка временных файлов |
+| `make rebuild` | `clean` + `build` |
 
 ---
 
 ## Использование в другом проекте
 
-**1. Сборка и линковка UI Kit:**
+**1. Сборка UI Kit:**
 
 ```bash
-make rebuild
+make build
 ```
 
 **2. Подключение в целевом проекте:**
 
 ```bash
-npm link atoms-uikit
+npm install ../uikit
 ```
 
-**3. Импорт компонентов:**
+Это добавляет в `package.json` целевого проекта постоянную локальную зависимость:
+```json
+"atoms-uikit": "file:../uikit"
+```
+
+После этого `npm install` в целевом проекте всегда будет подхватывать актуальный `dist/` из uikit.
+
+**3. Подключение CSS (в точке входа приложения):**
+
+```ts
+import 'element-plus/dist/index.css';   // стили Element Plus
+import 'atoms-uikit/clarity.css';        // стили компонентов uikit
+```
+
+**4. Импорт компонентов:**
 
 ```ts
 import { AtomsButton, AtomsModal, AtomsTable } from 'atoms-uikit';
 ```
 
-**4. Глобальная регистрация (опционально):**
+**5. Глобальная регистрация (опционально):**
 
 ```ts
-import { InitUiComponents, InitUiIcons } from 'atoms-uikit';
+import type { Plugin } from 'vue';
+import { InitUiComponents, InitUiIcons, LoadingDirectivePlugin } from 'atoms-uikit';
 
-app.use(InitUiComponents);
-app.use(InitUiIcons);
+app.use(InitUiComponents as Plugin);
+app.use(InitUiIcons as Plugin);
+app.use(LoadingDirectivePlugin as Plugin);
 ```
 
 ---
 
 ## Примечания
 
-- Глобальная npm-линковка не удаляется командами `clean` и `distclean`
-- На Windows рекомендуется Git Bash или WSL
+- После пересборки uikit (`make build`) изменения подхватываются автоматически — повторный `npm install` в целевом проекте не нужен
+- На Windows рекомендуется Git Bash или WSL для работы с Makefile
