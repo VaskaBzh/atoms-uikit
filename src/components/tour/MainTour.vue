@@ -33,13 +33,10 @@ import { ModelRef } from "vue";
 import { TourPropsContract } from "./contracts";
 import MainTourItem from "./MainTourItem.vue";
 
-const props = withDefaults(
-  defineProps<TourPropsContract>(),
-  {
-    isMask: true,
-    type: "default",
-  }
-);
+withDefaults(defineProps<TourPropsContract>(), {
+  isMask: true,
+  type: "default",
+});
 
 const modelValue: ModelRef<boolean | undefined> = defineModel();
 </script>
