@@ -1,29 +1,31 @@
-import { defineConfig, mergeConfig } from "vite";
+import { defineConfig } from "vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import dts from "vite-plugin-dts";
-import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 import vue from "@vitejs/plugin-vue";
 import * as path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
 	plugins: [
 		vue(),
-		cssInjectedByJsPlugin({ useStrictCSP: true, relativeCSSInjection: false }),
 		dts({
-			rollupTypes: true
+			rollupTypes: true,
+			tsconfigPath: "./tsconfig.app.json",
+			include: ["index.ts", "src/**/*.ts", "src/**/*.vue"],
+			entryRoot: ".",
 		}),
-		AutoImport({
-			imports: ["vue"],
-			resolvers: [ElementPlusResolver()],
-			// dirs: ['./src'],
-			dts: "./auto-imports.d.ts"
-		}),
-		Components({
-			resolvers: [ElementPlusResolver()]
-		})
+		...(command === "serve" ? [
+			AutoImport({
+				imports: ["vue"],
+				resolvers: [ElementPlusResolver()],
+				dts: "./auto-imports.d.ts"
+			}),
+			Components({
+				resolvers: [ElementPlusResolver()]
+			})
+		] : [])
 	],
 	resolve: {
 		alias: {
@@ -34,37 +36,30 @@ export default defineConfig({
 		outDir: "dist",
 		lib: {
 			entry: path.resolve(__dirname, "index.ts"),
-			name: "atoms-uikit",
-			fileName: (format) => `atoms-uikit.${format}.js`
+			fileName: "index",
+			formats: ["es"]
 		},
 		rollupOptions: {
-			external: ["vue"],
+			external: ["vue", /^element-plus/, /^@element-plus/],
 			output: {
 				exports: "named",
 				globals: {
-					vue: "Vue"
+					vue: "Vue",
+					"element-plus": "ElementPlus",
+					"@element-plus/icons-vue": "ElementPlusIconsVue"
 				}
-			},
-			input: {
-				main: path.resolve(__dirname, "index.ts")
 			}
 		},
 		sourcemap: true,
-		emptyOutDir: true
+		emptyOutDir: true,
+		copyPublicDir: false
 	},
 	css: {
 		transformer: "postcss",
-		// preprocessorOptions: {
-		// 	scss: {
-		// 		additionalData: `
-		// 		  @use "src/style.css";
-		// 		`
-		// 	}
-		// }
 	},
 	// @ts-ignore
 	test: {
-		environment: 'jsdom',
+		environment: "jsdom",
 		pool: "vmThreads",
 	},
-});
+}));

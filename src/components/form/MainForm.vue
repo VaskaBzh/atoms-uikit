@@ -11,6 +11,8 @@
 		:show-message="isShowMessage"
 		:rules="rules"
 		@validate="handleValidate"
+		@click="clickHandler"
+		@keypress="keyPressHandler"
 	>
 		<!-- Can have button data-submit -->
 		<slot />
@@ -20,7 +22,7 @@
 <script setup lang="ts">
 import { FormPropsContract } from "./contracts";
 import { FormInstance } from "element-plus";
-import { onMounted, onUnmounted, Ref, ref } from "vue";
+import { Ref, ref } from "vue";
 import { ButtonSelectorConst } from "./consts";
 import { FormInvalidFieldsType } from "@/types";
 
@@ -131,18 +133,6 @@ const keyPressHandler = (event: KeyboardEvent): void => {
 	}
 };
 
-onMounted(() => {
-	if (Boolean(formRef.value)) {
-		formRef.value?.$el.addEventListener("click", clickHandler);
-		formRef.value?.$el.addEventListener("keypress", keyPressHandler);
-	}
-});
-onUnmounted(() => {
-	if (Boolean(formRef.value)) {
-		formRef.value?.$el.removeEventListener("click", clickHandler);
-		formRef.value?.$el.removeEventListener("keypress", keyPressHandler);
-	}
-});
 
 defineExpose({
 	validate,

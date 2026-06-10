@@ -1,16 +1,19 @@
 {
   "name": "atoms-uikit",
   "type": "module",
-  "main": "./dist/atoms-uikit.umd.js",
-  "module": "./dist/atoms-uikit.es.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
   "styles": "./dist/style.css",
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "private": true,
   "exports": {
     ".": {
-      "import": "./dist/atoms-uikit.es.js",
-      "require": "./dist/atoms-uikit.umd.js",
+      "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
     "./clarity.css": "./dist/style.css"
@@ -18,28 +21,33 @@
   "files": [
     "dist"
   ],
-  "version": "0.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "prepare": "husky"
+  },
+  "peerDependencies": {
+    "element-plus": ">=2.7.6",
+    "@element-plus/icons-vue": ">=2.3.1",
+    "vue": ">=3.4.0"
   },
   "dependencies": {
-    "@element-plus/icons-vue": "^2.3.1",
     "@testing-library/vue": "^8.1.0",
     "@vue/test-utils": "^2.4.6",
-    "element-plus": "^2.7.6",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
-    "vite-plugin-css-injected-by-js": "^3.5.1",
     "vite-plugin-dts": "^3.9.1",
-    "vue": "^3.4.29",
     "vue-range-multi": "^0.2.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^21.0.2",
+    "@commitlint/config-conventional": "^21.0.2",
     "@types/node": "^20.14.11",
     "@vitejs/plugin-vue": "^5.1.4",
+    "husky": "^9.1.7",
     "jsdom": "^25.0.1",
     "sass": "^1.77.8",
     "typescript": "^5.2.2",

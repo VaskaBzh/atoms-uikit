@@ -1,6 +1,4 @@
 import { ElLoading } from "element-plus";
-import { App } from "vue";
+import type { Plugin } from "vue";
 
-export function LoadingDirectivePlugin(): (app: App) => void {
-    return ElLoading.install
-}
+export const LoadingDirectivePlugin: Plugin = ElLoading;

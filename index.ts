@@ -1,4 +1,4 @@
-import 'element-plus/dist/index.css'
+import "element-plus/dist/index.css";
 import "./src/style.css";
 
 export {
@@ -10,9 +10,6 @@ export {
     LoadingService,
     InitUiComponents,
     InitUiIcons,
-    // @ts-ignore
+    InitElementPlus,
 } from "./src";
-// @ts-ignore
 export type { ColorType, SizeType } from "./src";
-// @ts-ignore
-export { default as ElementPlus } from "element-plus";
