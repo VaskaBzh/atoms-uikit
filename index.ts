@@ -1,3 +1,4 @@
+import "element-plus/dist/index.css";
 import "./src/style.css";
 
 export {
@@ -9,5 +10,6 @@ export {
     LoadingService,
     InitUiComponents,
     InitUiIcons,
+    InitElementPlus,
 } from "./src";
 export type { ColorType, SizeType } from "./src";
