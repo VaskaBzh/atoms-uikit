@@ -98,7 +98,4 @@ declare module 'vue' {
     MainTree: typeof import('./src/components/tree/MainTree.vue')['default']
     TimeSelect: typeof import('./src/components/select/TimeSelect.vue')['default']
   }
-  export interface ComponentCustomProperties {
-    vLoading: typeof import('element-plus/es')['ElLoadingDirective']
-  }
 }

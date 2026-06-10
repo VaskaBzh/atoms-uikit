@@ -6,7 +6,10 @@
   "types": "./dist/index.d.ts",
   "typings": "./dist/index.d.ts",
   "styles": "./dist/style.css",
-  "sideEffects": ["*.css", "*.scss"],
+  "sideEffects": [
+    "*.css",
+    "*.scss"
+  ],
   "private": true,
   "exports": {
     ".": {
@@ -18,7 +21,7 @@
   "files": [
     "dist"
   ],
-  "version": "0.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
