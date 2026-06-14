@@ -23,9 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
-# AI Factory — local plan files (not shared)
-.ai-factory/plans/
-.ai-factory/PLAN.md
-
-# Claude Code — local settings
-.claude/settings.local.json
+# AI / editor tooling — not part of the project
+.ai-factory/
+.claude/
+.zed/
+.mcp.json
+AGENTS.md
