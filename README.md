@@ -1,142 +1,176 @@
 # Atoms UI Kit
 
-UI Kit на базе **Vue 3 + TypeScript + Vite**, предназначенный для переиспользования в других проектах через локальную зависимость.
+A Vue 3 component library built on top of [Element Plus](https://element-plus.org/), providing a consistent set of UI primitives under the `Atoms` prefix.
 
-Проект использует Vue 3 `<script setup>` SFC и собирается в виде готового npm-пакета.
+## Stack
 
----
-
-## Стек
-
-- Vue 3
-- TypeScript
-- Vite
-- Element Plus UI
+- Vue 3 · TypeScript · Vite
+- Element Plus
+- SCSS
 - Vitest
 
----
-
-## Структура проекта
+## Project structure
 
 ```
 atoms-uikit/
 ├── src/
-│   ├── components/      # Vue 3 компоненты
-│   ├── services/        # Сервисы (Message, Notification, Loading)
-│   ├── plugins/         # Vue плагины (InitUiComponents, InitUiIcons)
-│   ├── directives/      # Директивы (LoadingDirective)
-│   ├── composables/     # Composables (theme)
-│   ├── contracts/       # TypeScript интерфейсы сервисов
-│   ├── types/           # Общие типы (Color, Size, Form, Tree)
-│   ├── lib/             # Утилиты
-│   └── test-utils/      # Тестовые утилиты (factories, traits)
-├── dist/                # Результат сборки
-├── Makefile             # Автоматизация сборки
-└── index.ts             # Главная точка входа
+│   ├── components/      # Vue 3 components
+│   ├── services/        # MessageService, NotificationService, LoadingService
+│   ├── plugins/         # InitUiComponents, InitUiIcons, InitElementPlus
+│   ├── directives/      # LoadingDirective
+│   ├── composables/     # theme composable
+│   ├── contracts/       # TypeScript service interfaces
+│   ├── types/           # shared types (Color, Size, Form, Tree)
+│   ├── lib/             # utilities
+│   └── test-utils/      # test factories and traits
+├── dist/                # build output
+├── Makefile             # build automation
+└── index.ts             # library entry point
 ```
 
----
+## Components
 
-## Компоненты
+All components are exported under the `Atoms` prefix:
 
-Все компоненты экспортируются с префиксом `Atoms`:
+| Category | Components |
+|---|---|
+| **Form** | `AtomsButton`, `AtomsInput`, `AtomsCheckbox`, `AtomsRadio`, `AtomsSelect`, `AtomsDatePicker`, `AtomsForm`, `AtomsFormItem`, `AtomsInputNumber`, `AtomsInputRange`, `AtomsAutocomplete`, `AtomsTimeSelect` |
+| **Data** | `AtomsTable`, `AtomsTableColumn`, `AtomsTree`, `AtomsPagination`, `AtomsTag`, `AtomsStatistic`, `AtomsCountdown`, `AtomsCollapse` |
+| **Navigation** | `AtomsMenu`, `AtomsMenuGroup`, `AtomsMenuItem`, `AtomsMenuSub`, `AtomsBreadcrumbs`, `AtomsTabs`, `AtomsTabPanel`, `AtomsSteps`, `AtomsStepsItem`, `AtomsTour`, `AtomsTourItem` |
+| **Overlay** | `AtomsModal`, `AtomsPopover` |
+| **Display** | `AtomsTitle`, `AtomsDivider`, `AtomsAlert`, `AtomsProgress`, `AtomsSkeleton`, `AtomsSkeletonItem`, `AtomsEmpty`, `AtomsIcon`, `AtomsTooltip` |
+| **Layout** | `AtomsAffix` |
 
-| Категория | Компоненты |
-|-----------|------------|
-| Формы | `AtomsButton`, `AtomsInput`, `AtomsCheckbox`, `AtomsRadio`, `AtomsSelect`, `AtomsDatePicker`, `AtomsForm` |
-| Данные | `AtomsTable`, `AtomsTree`, `AtomsPagination`, `AtomsTag`, `AtomsStatistic` |
-| Навигация | `AtomsMenu`, `AtomsBreadcrumbs`, `AtomsTab`, `AtomsStep` |
-| Обратная связь | `AtomsModal`, `AtomsAlert`, `AtomsPopover`, `AtomsTooltip`, `AtomsTour` |
-| Отображение | `AtomsTitle`, `AtomsDivider`, `AtomsCollapse`, `AtomsProgress`, `AtomsSkeleton`, `AtomsEmpty` |
-| Прочее | `AtomsIcon`, `AtomsAffix` |
-
----
-
-## Сервисы
+## Services
 
 ```ts
-import { MessageService, NotificationService, LoadingService } from 'atoms-uikit';
+import { MessageService, NotificationService, LoadingService } from 'atoms-uikit'
+
+MessageService.success('Saved!')
+NotificationService.info({ title: 'Update', message: 'New version available' })
+
+const loading = LoadingService.open()
+loading.close()
 ```
 
----
+## Installation
 
-## Требования
+```bash
+npm install atoms-uikit
+```
+
+Peer dependencies:
+
+```bash
+npm install vue@^3.4.0 element-plus@^2.7.6 @element-plus/icons-vue@^2.3.1
+```
+
+## Usage
+
+### Full registration
+
+```ts
+import { createApp } from 'vue'
+import { InitUiComponents, InitUiIcons, InitElementPlus } from 'atoms-uikit'
+import 'element-plus/dist/index.css'
+import 'atoms-uikit/clarity.css'
+
+const app = createApp(App)
+
+InitElementPlus(app)
+InitUiIcons(app)
+InitUiComponents(app)
+
+app.mount('#app')
+```
+
+### Selective import
+
+```ts
+import { uiComponents } from 'atoms-uikit'
+
+const { AtomsButton, AtomsTable } = uiComponents
+```
+
+### Loading directive
+
+```ts
+import { LoadingDirectivePlugin } from 'atoms-uikit'
+
+app.use(LoadingDirectivePlugin)
+```
+
+```html
+<div v-loading="isLoading">...</div>
+```
+
+## Requirements
 
 - Node.js ≥ 18
 - npm ≥ 9
-- GNU Make (Windows: Git Bash или WSL)
+- GNU Make (Windows: Git Bash or WSL)
 
----
-
-## Установка и разработка
+## Development
 
 ```bash
-npm install         # Установка зависимостей
-npm run dev         # Запуск dev-сервера
-npm run build       # Сборка в dist/
-npm run test        # Запуск тестов
+npm install       # install dependencies
+npm run dev       # start dev playground
+npm run build     # build to dist/
+npm run test      # run tests
 ```
-
----
 
 ## Makefile
 
-| Команда | Описание |
-|---------|----------|
-| `make build` | Установка зависимостей + сборка в `dist/` |
-| `make clean` | Очистка `dist/`, `node_modules/`, `package-lock.json` |
+| Command | Description |
+|---|---|
+| `make build` | Install dependencies + build to `dist/` |
+| `make clean` | Remove `dist/`, `node_modules/`, `package-lock.json` |
 | `make rebuild` | `clean` + `build` |
 
----
+## Using as a local dependency
 
-## Использование в другом проекте
-
-**1. Сборка UI Kit:**
+**1. Build the UI Kit:**
 
 ```bash
 make build
 ```
 
-**2. Подключение в целевом проекте:**
+**2. Link in the target project:**
 
 ```bash
 npm install ../uikit
 ```
 
-Это добавляет в `package.json` целевого проекта постоянную локальную зависимость:
+This adds a permanent local dependency to `package.json`:
+
 ```json
 "atoms-uikit": "file:../uikit"
 ```
 
-После этого `npm install` в целевом проекте всегда будет подхватывать актуальный `dist/` из uikit.
+After that, `npm install` in the target project will always pick up the latest `dist/` from the UI Kit.
 
-**3. Подключение CSS (в точке входа приложения):**
-
-```ts
-import 'element-plus/dist/index.css';   // стили Element Plus
-import 'atoms-uikit/clarity.css';        // стили компонентов uikit
-```
-
-**4. Импорт компонентов:**
+**3. Import styles (at the app entry point):**
 
 ```ts
-import { AtomsButton, AtomsModal, AtomsTable } from 'atoms-uikit';
+import 'element-plus/dist/index.css'
+import 'atoms-uikit/clarity.css'
 ```
 
-**5. Глобальная регистрация (опционально):**
+**4. Import components:**
 
 ```ts
-import type { Plugin } from 'vue';
-import { InitUiComponents, InitUiIcons, LoadingDirectivePlugin } from 'atoms-uikit';
-
-app.use(InitUiComponents as Plugin);
-app.use(InitUiIcons as Plugin);
-app.use(LoadingDirectivePlugin as Plugin);
+import { AtomsButton, AtomsModal, AtomsTable } from 'atoms-uikit'
 ```
 
----
+**5. Global registration (optional):**
 
-## Примечания
+```ts
+import type { Plugin } from 'vue'
+import { InitUiComponents, InitUiIcons, LoadingDirectivePlugin } from 'atoms-uikit'
 
-- После пересборки uikit (`make build`) изменения подхватываются автоматически — повторный `npm install` в целевом проекте не нужен
-- На Windows рекомендуется Git Bash или WSL для работы с Makefile
+app.use(InitUiComponents as Plugin)
+app.use(InitUiIcons as Plugin)
+app.use(LoadingDirectivePlugin as Plugin)
+```
+
+> After rebuilding the UI Kit (`make build`), changes are picked up automatically — no need to re-run `npm install` in the target project.
